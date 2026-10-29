@@ -1,0 +1,6 @@
+crud\angular\demo\service\CursoService.class
+crud\angular\demo\model\Curso.class
+crud\angular\demo\controller\CursoController.class
+crud\angular\demo\controller\AplicationControllerAdvice.class
+crud\angular\demo\excepition\RecordNotFoundExcepition.class
+crud\angular\demo\repository\CursoRepository.class

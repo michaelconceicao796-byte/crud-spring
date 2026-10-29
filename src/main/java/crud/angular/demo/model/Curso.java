@@ -1,5 +1,7 @@
 package crud.angular.demo.model;
 
+import java.util.Optional;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -53,5 +55,9 @@ public class Curso {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public Optional<Curso> map(Object object) {
+        throw new UnsupportedOperationException("Unimplemented method 'map'");
     }
 }
