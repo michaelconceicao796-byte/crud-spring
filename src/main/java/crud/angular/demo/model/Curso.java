@@ -2,20 +2,27 @@ package crud.angular.demo.model;
 
 import java.util.Optional;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.hibernate.validator.constraints.Length;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
+import lombok.Data;
+
+@Data
 @Entity
-@Table(name = "cursos")
+@SQLDelete(sql = "UPDATE cursos SET deleted = true WHERE id = ?")
+@Where(clause = "status = 'Ativo'")
 public class Curso {
 
     @Id
@@ -24,14 +31,22 @@ public class Curso {
     private Long id;
 
     @NotBlank
-    @Size(min = 5, max = 100)
+    @NotNull 
+    @Length(min = 5, max = 100)
     @Column(nullable = false, length = 100)
     private String name;
 
     @NotNull
+    @Length(max = 100)
     @Pattern(regexp = "Back-end|Front-end")
-    @Column(nullable = false, length = 20)
+    @Column(length = 10, nullable = false)
     private String category;
+
+    @NotNull
+    @Length(max = 10)
+    @Pattern(regexp = "Ativo|Inativo")
+    @Column(length = 10, nullable = false)
+    private String status = "Ativo";
 
     public Long getId() {
         return id;
