@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.constraints.NotNull;
-
+import crud.angular.demo.dto.CursoDTO;
 import crud.angular.demo.model.Curso;
 import crud.angular.demo.service.CursoService;
 import jakarta.validation.Valid;
@@ -33,24 +33,24 @@ public class CursoController {
     }
 
     @GetMapping
-    public @ResponseBody List<Curso> list() {
+    public @ResponseBody List<CursoDTO> list() {
         return cursoService.list();
     }
 
     @GetMapping("/{id}")
-    public Curso findById(@PathVariable @NotNull @Positive Long id) {
+    public CursoDTO findById(@PathVariable @NotNull @Positive Long id) {
         return cursoService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Curso create(@RequestBody @Valid Curso curso) {
+    public CursoDTO create(@RequestBody @Valid @NotNull CursoDTO curso) {
         return cursoService.create(curso);
     }
 
     @PutMapping("/{id}")
-    public Curso update(@PathVariable @NotNull @Positive Long id,
-        @RequestBody @Valid Curso curso) {
+    public CursoDTO update(@PathVariable @NotNull @Positive Long id,
+        @RequestBody @Valid @NotNull CursoDTO curso) {
         return cursoService.update(id, curso);
     }
 
