@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import crud.angular.demo.dto.CursoDTO;
 import crud.angular.demo.dto.mapper.CursoMapper;
+import crud.angular.demo.enums.Category;
 import crud.angular.demo.excepition.RecordNotFoundExcepition;
 import crud.angular.demo.model.Curso;
 import crud.angular.demo.repository.CursoRepository;
@@ -50,7 +51,7 @@ public class CursoService {
         return cursoRepository.findById(id)
             .map(recordFound -> {
                 recordFound.setName(curso.name());
-                recordFound.setCategory(curso.category());
+                recordFound.setCategory(Category.FRONT_END);
                 return cursoMapper.toDTO(cursoRepository.save(cursoMapper.toEntity(curso)));
         }).orElseThrow(() -> new RecordNotFoundExcepition(id));
     }
