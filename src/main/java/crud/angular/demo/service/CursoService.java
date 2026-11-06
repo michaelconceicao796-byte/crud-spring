@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import crud.angular.demo.dto.CursoDTO;
 import crud.angular.demo.dto.mapper.CursoMapper;
@@ -18,7 +17,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-@Validated 
+@Validated
 @Service
 public class CursoService {
 
@@ -32,15 +31,14 @@ public class CursoService {
 
     public List<CursoDTO> list() {
         return cursoRepository.findAll()
-        .stream()
-        .map(cursoMapper::toDTO)
-        .collect(Collectors.toList());
+                .stream()
+                .map(cursoMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-
-    public CursoDTO findById(@PathVariable @NotNull @Positive Long id) {
+    public CursoDTO findById(@NotNull @Positive Long id) {
         return cursoRepository.findById(id).map(cursoMapper::toDTO)
-        .orElseThrow(() -> new RecordNotFoundExcepition(id));
+                .orElseThrow(() -> new RecordNotFoundExcepition(id));
     }
 
     public CursoDTO create(@Valid @NotNull CursoDTO curso) {
@@ -49,15 +47,17 @@ public class CursoService {
 
     public CursoDTO update(@NotNull @Positive Long id, @Valid @NotNull CursoDTO curso) {
         return cursoRepository.findById(id)
-            .map(recordFound -> {
-                recordFound.setName(curso.name());
-                recordFound.setCategory(Category.FRONT_END);
-                return cursoMapper.toDTO(cursoRepository.save(cursoMapper.toEntity(curso)));
-        }).orElseThrow(() -> new RecordNotFoundExcepition(id));
+                .map(recordFound -> {
+                    recordFound.setName(curso.name());
+                    recordFound.setCategory(cursoMapper.convertCategoryValue(curso.category()));
+                    return cursoMapper.toDTO(cursoRepository.save(cursoMapper.toEntity(curso)));
+                }).orElseThrow(() -> new RecordNotFoundExcepition(id));
     }
 
-    public void delete(@PathVariable @NotNull @Positive Long id) {
-        cursoRepository.delete(cursoRepository.findById(id)
-            .orElseThrow(() -> new RecordNotFoundExcepition(id)));
-    }
+    public void delete(@NotNull @Positive Long id) {
+    Curso curso = cursoRepository.findById(id)
+            .orElseThrow(() -> new RecordNotFoundExcepition(id));
+
+    cursoRepository.delete(curso);
+}
 }

@@ -13,7 +13,7 @@ public class CursoMapper {
         if (curso == null) {
             return null;
         }
-        return new CursoDTO(curso.getId(), curso.getName(), "Front-end");
+        return new CursoDTO(curso.getId(), curso.getName(), curso.getCategory().getValue());
     }
 
     public Curso toEntity(CursoDTO cursoDTO) {
@@ -27,8 +27,19 @@ public class CursoMapper {
             curso.setId(cursoDTO.id());
         }
         curso.setName(cursoDTO.name());
-        curso.setCategory(Category.FRONT_END);
-        curso.setStatus("Ativo");
+        // TODO: use a mapper for Category
+        curso.setCategory(convertCategoryValue(cursoDTO.category()));
         return curso;
+    }
+
+    public Category convertCategoryValue(String value) {
+        if (value == null) {
+            return null;
+        }
+        return switch (value) {
+            case "Front-end" -> Category.FRONT_END;
+            case "Back-end" -> Category.BACK_END;
+            default -> throw new IllegalArgumentException("Categoria inválida: " + value);
+        };
     }
 }

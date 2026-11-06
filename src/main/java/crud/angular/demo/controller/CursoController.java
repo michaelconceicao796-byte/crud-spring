@@ -33,7 +33,7 @@ public class CursoController {
     }
 
     @GetMapping
-    public @ResponseBody List<CursoDTO> list() {
+    public List<CursoDTO> list() {
         return cursoService.list();
     }
 
