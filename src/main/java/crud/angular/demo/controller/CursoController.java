@@ -3,6 +3,7 @@ package crud.angular.demo.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +57,8 @@ public class CursoController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable @NotNull @Positive Long id) {
+    public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
         cursoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

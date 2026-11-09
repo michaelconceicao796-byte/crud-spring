@@ -1,7 +1,14 @@
-crud\angular\demo\service\CursoService.class
 crud\angular\demo\model\Curso.class
-crud\angular\demo\controller\CursoController.class
+crud\angular\demo\model\Lesson.class
 crud\angular\demo\controller\AplicationControllerAdvice.class
 crud\angular\demo\CrudSpringApplication.class
+crud\angular\demo\dto\mapper\CursoMapper.class
+crud\angular\demo\dto\CursoDTO.class
 crud\angular\demo\excepition\RecordNotFoundExcepition.class
+crud\angular\demo\service\CursoService.class
+crud\angular\demo\controller\CursoController.class
+crud\angular\demo\enums\converters\CategoryConverter.class
+crud\angular\demo\enums\Category.class
+crud\angular\demo\enums\converters\StatusConverter.class
+crud\angular\demo\enums\Status.class
 crud\angular\demo\repository\CursoRepository.class

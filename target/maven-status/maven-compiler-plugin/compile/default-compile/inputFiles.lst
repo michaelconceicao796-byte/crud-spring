@@ -1,7 +1,14 @@
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\controller\AplicationControllerAdvice.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\controller\CursoController.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\CrudSpringApplication.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\dto\CursoDTO.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\dto\mapper\CursoMapper.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\enums\Category.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\enums\converters\CategoryConverter.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\enums\converters\StatusConverter.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\enums\Status.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\excepition\RecordNotFoundExcepition.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\model\Curso.java
+C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\model\Lesson.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\repository\CursoRepository.java
 C:\Users\Usuario\Desktop\crud-spring\src\main\java\crud\angular\demo\service\CursoService.java
