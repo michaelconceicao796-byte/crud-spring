@@ -1,8 +1,12 @@
 package crud.angular.demo.dto.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
 import crud.angular.demo.dto.CursoDTO;
+import crud.angular.demo.dto.LessonDTO;
 import crud.angular.demo.enums.Category;
 import crud.angular.demo.model.Curso;
 
@@ -13,8 +17,13 @@ public class CursoMapper {
         if (curso == null) {
             return null;
         }
+        List<LessonDTO> lessons =  curso.getLessons()
+                .stream()
+                .map(lesson -> new LessonDTO(lesson.getId(), lesson.getName(), 
+                lesson.getYoutubeUrl()))
+                .collect(Collectors.toList());
         return new CursoDTO(curso.getId(), curso.getName(), curso.getCategory().getValue(),
-                curso.getLessons());
+                lessons);
     }
 
     public Curso toEntity(CursoDTO cursoDTO) {
