@@ -13,6 +13,7 @@ import crud.angular.demo.enums.Category;
 import crud.angular.demo.enums.Status;
 import crud.angular.demo.enums.converters.CategoryConverter;
 import crud.angular.demo.enums.converters.StatusConverter;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -20,7 +21,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,7 +38,7 @@ public class Curso {
     private Long id;
 
     @NotBlank
-    @NotNull 
+    @NotNull
     @Length(min = 5, max = 100)
     @Column(nullable = false, length = 100)
     private String name;
@@ -49,7 +49,6 @@ public class Curso {
     private Category category;
 
     @NotNull
-    
     @Column(length = 10, nullable = false)
     @Convert(converter = StatusConverter.class)
     private Status status = Status.ACTIVE;

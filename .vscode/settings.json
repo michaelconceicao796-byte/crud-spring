@@ -10,5 +10,6 @@
         "org.mockito.Mockito.*",
         "org.mockito.ArgumentMatchers.*",
         "org.mockito.Answers.*"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

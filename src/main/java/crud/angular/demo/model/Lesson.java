@@ -30,5 +30,6 @@ public class Lesson {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "curso_id", nullable = false)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) 
     private Curso curso; 
 }
