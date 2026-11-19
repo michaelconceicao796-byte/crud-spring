@@ -45,12 +45,16 @@ public class CursoService {
         return cursoMapper.toDTO(cursoRepository.save(cursoMapper.toEntity(curso)));
     }
 
-    public CursoDTO update(@NotNull @Positive Long id, @Valid @NotNull CursoDTO curso) {
+    public CursoDTO update(@NotNull @Positive Long id, @Valid @NotNull CursoDTO cursoDTO) {
         return cursoRepository.findById(id)
                 .map(recordFound -> {
-                    recordFound.setName(curso.name());
-                    recordFound.setCategory(cursoMapper.convertCategoryValue(curso.category()));
-                    return cursoMapper.toDTO(cursoRepository.save(cursoMapper.toEntity(curso)));
+                    Curso curso = cursoMapper.toEntity(cursoDTO);
+                    recordFound.setName(cursoDTO.name());
+                    recordFound.setCategory(cursoMapper.convertCategoryValue(cursoDTO.category()));
+                    // recordFound.setLessons(curso.getLessons());
+                    recordFound.getLessons().clear();
+                    curso.getLessons().forEach(recordFound.getLessons()::add);
+                    return cursoMapper.toDTO(cursoRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundExcepition(id));
     }
 

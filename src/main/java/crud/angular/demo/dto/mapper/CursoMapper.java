@@ -9,6 +9,7 @@ import crud.angular.demo.dto.CursoDTO;
 import crud.angular.demo.dto.LessonDTO;
 import crud.angular.demo.enums.Category;
 import crud.angular.demo.model.Curso;
+import crud.angular.demo.model.Lesson;
 
 @Component 
 public class CursoMapper {
@@ -38,6 +39,17 @@ public class CursoMapper {
         }
         curso.setName(cursoDTO.name());
         curso.setCategory(convertCategoryValue(cursoDTO.category()));
+
+        List <Lesson> lessons = cursoDTO.lessons().stream().map(lessonDTO -> {
+            var lesson = new crud.angular.demo.model.Lesson();
+            lesson.setId(lessonDTO.id());
+            lesson.setName(lessonDTO.name());
+            lesson.setYoutubeUrl(lessonDTO.youtubeUrl());
+            lesson.setCurso(curso);
+            return lesson;
+        }).collect(Collectors.toList());
+        curso.setLessons(lessons);
+
         return curso;
     }
 
