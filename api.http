@@ -1,0 +1,45 @@
+GET http://localhost:8080/api/cursos
+
+###
+GET http://localhost:8080/api/cursos/abc
+
+###
+POST http://localhost:8080/api/cursos HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Sport Clube Corinthians Paulista",
+    "category": "Front-end", 
+    "lessons": [
+        {
+            "name": "Introdução",
+            "youtubeUrl": "tPOMG0D57S0"
+        },
+        {
+            "name": "Introdução2",
+            "youtubeUrl": "tPOMG0D57S0"
+        }
+    ]
+}
+
+###
+PUT  http://localhost:8080/api/cursos/-1 HTTP/1.1
+Content-Type: application/json
+
+{
+    
+    "name": "Angular com Spring",
+    "category": "Back-end",
+    "lessons": [
+      {
+        "id": 1,
+        "name": "Introdução1235111",
+        "youtubeUrl": "01234567890"
+      },
+      {
+        "id": 2,
+        "name": "Angular45411113",
+        "youtubeUrl": "01234567891"
+      }
+    ]
+  },
