@@ -1,7 +1,7 @@
 GET http://localhost:8080/api/cursos
 
 ###
-GET http://localhost:8080/api/cursos/abc
+GET http://localhost:8080/api/cursos/
 
 ###
 POST http://localhost:8080/api/cursos HTTP/1.1
