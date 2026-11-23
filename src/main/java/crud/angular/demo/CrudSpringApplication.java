@@ -29,23 +29,27 @@ public class CrudSpringApplication {
             // Insere um exemplo apenas quando o banco estiver vazio.
             // Não apaga os cursos cadastrados quando a aplicação reinicia.
             if (repository.count() == 0) {
-                Curso c = new Curso();
-                c.setName("Angular com Spring");
-                c.setCategory(Category.BACK_END);
+            
+                for (int i=0; i<20; i++) {
+                
+                    Curso c = new Curso();
+                    c.setName("Angular com Spring" + i);
+                    c.setCategory(Category.BACK_END);
 
-                Lesson l = new Lesson();
-                l.setName("Introdução");
-                l.setYoutubeUrl("01234567890");
-                l.setCurso(c);
-                c.getLessons().add(l);
+                    Lesson l = new Lesson();
+                    l.setName("Introdução");
+                    l.setYoutubeUrl("01234567890");
+                    l.setCurso(c);
+                    c.getLessons().add(l);
 
-                Lesson l1 = new Lesson();
-                l1.setName("Angular");
-                l1.setYoutubeUrl("01234567891");
-                l1.setCurso(c);
-                c.getLessons().add(l1);
+                    Lesson l1 = new Lesson();
+                    l1.setName("Angular");
+                    l1.setYoutubeUrl("01234567891");
+                    l1.setCurso(c);
+                    c.getLessons().add(l1);
 
-                cursoRepository.save(c);
+                    cursoRepository.save(c);
+                }
             }
         };
     }

@@ -1,7 +1,10 @@
 GET http://localhost:8080/api/cursos
 
 ###
-GET http://localhost:8080/api/cursos/
+GET http://localhost:8080/api/cursos?page=0&pageSize=100
+
+###
+GET http://localhost:8080/api/cursos/abc
 
 ###
 POST http://localhost:8080/api/cursos HTTP/1.1

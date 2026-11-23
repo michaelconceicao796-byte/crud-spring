@@ -4,18 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import crud.angular.demo.dto.CursoDTO;
+import crud.angular.demo.dto.CursoPageDTO;
 import crud.angular.demo.dto.mapper.CursoMapper;
 import crud.angular.demo.enums.Category;
 import crud.angular.demo.excepition.RecordNotFoundExcepition;
 import crud.angular.demo.model.Curso;
 import crud.angular.demo.repository.CursoRepository;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Validated
 @Service
@@ -29,12 +34,20 @@ public class CursoService {
         this.cursoMapper = cursoMapper;
     }
 
+    public CursoPageDTO list(@PositiveOrZero int page, @Positive @Max(100)  int pageSize) {
+        Page<Curso> pageCurso = cursoRepository.findAll(PageRequest.of(page, pageSize));
+        List<CursoDTO> cursos = pageCurso.get().map(cursoMapper::toDTO).collect(Collectors.toList());
+        return new CursoPageDTO(cursos, pageCurso.getTotalElements(), pageCurso.getTotalPages());
+    }
+
+    /*
     public List<CursoDTO> list() {
         return cursoRepository.findAll()
                 .stream()
                 .map(cursoMapper::toDTO)
                 .collect(Collectors.toList());
     }
+    */
 
     public CursoDTO findById(@NotNull @Positive Long id) {
         return cursoRepository.findById(id).map(cursoMapper::toDTO)
