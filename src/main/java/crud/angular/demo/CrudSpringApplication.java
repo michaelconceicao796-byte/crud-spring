@@ -13,22 +13,14 @@ import crud.angular.demo.repository.CursoRepository;
 @SpringBootApplication
 public class CrudSpringApplication {
 
-    private final CursoRepository cursoRepository;
-
-    CrudSpringApplication(CursoRepository cursoRepository) {
-        this.cursoRepository = cursoRepository;
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(CrudSpringApplication.class, args);
     }
 
     @Bean
-    CommandLineRunner initDatabase(CursoRepository repository) {
+    CommandLineRunner initDatabase(CursoRepository cursoRepository) {
         return args -> {
-            // Insere um exemplo apenas quando o banco estiver vazio.
-            // Não apaga os cursos cadastrados quando a aplicação reinicia.
-            if (repository.count() == 0) {
+            cursoRepository.deleteAll();
             
                 for (int i=0; i<20; i++) {
                 
@@ -50,7 +42,6 @@ public class CrudSpringApplication {
 
                     cursoRepository.save(c);
                 }
-            }
         };
     }
 }

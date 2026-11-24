@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
+/*import org.hibernate.annotations.Where;*/
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,7 +29,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @SQLDelete(sql = "UPDATE curso SET status = 'Inativo' WHERE id = ?")
-@Where(clause = "status = 'Ativo'")
+/*@Where(clause = "status = 'Ativo'")*/
 public class Curso {
 
     @Id
