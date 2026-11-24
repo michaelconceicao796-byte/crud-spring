@@ -1,11 +1,16 @@
 crud\angular\demo\model\Curso.class
 crud\angular\demo\model\Lesson.class
+crud\angular\demo\enums\validation\ValueOfEnumValidator.class
 crud\angular\demo\controller\AplicationControllerAdvice.class
+crud\angular\demo\controller\ConstrainViolationException.class
 crud\angular\demo\CrudSpringApplication.class
 crud\angular\demo\dto\mapper\CursoMapper.class
 crud\angular\demo\dto\CursoDTO.class
+crud\angular\demo\dto\LessonDTO.class
 crud\angular\demo\excepition\RecordNotFoundExcepition.class
+crud\angular\demo\dto\CursoPageDTO.class
 crud\angular\demo\service\CursoService.class
+crud\angular\demo\enums\validation\ValueOfEnum.class
 crud\angular\demo\controller\CursoController.class
 crud\angular\demo\enums\converters\CategoryConverter.class
 crud\angular\demo\enums\Category.class
